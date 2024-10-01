@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class PasswordValidatorTest {
+public class PasswordValidatorLengthTest {
 
     @Test
     public void returnFalse_whenPasswordLongEnough_WithArrayLength7() {
@@ -54,4 +54,6 @@ public class PasswordValidatorTest {
 
         );
     }
+
+
 }
