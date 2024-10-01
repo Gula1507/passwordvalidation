@@ -14,6 +14,19 @@ public class PasswordValidator {
         }
         return false;
     }
-//    public static boolean isPasswordWithUpperAndLowerCase (char[] password)
+
+    public static boolean isPasswordWithUpperAndLowerCase(char[] password) {
+        int counterLowerCase = 0;
+        int counterUpperCase = 0;
+        for (char symbol : password) {
+            if (Character.isLowerCase(symbol)) {
+                counterLowerCase++;
+            } else if (Character.isUpperCase(symbol)) {
+                counterUpperCase++;
+
+            }
+        }
+        return counterLowerCase > 0 && counterUpperCase > 0;
+    }
 //    public static boolean isPasswordInCommonUse (char[] password)
 }
