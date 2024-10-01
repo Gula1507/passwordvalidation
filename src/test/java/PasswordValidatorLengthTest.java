@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class PasswordValidatorLengthTest {
 
     @Test
-    public void returnFalse_whenPasswordLongEnough_WithArrayLength7() {
+    public void isPasswordLongEnough_withArrayLength7_returnsFalse() {
         //GIVEN
         char[] password = {'o', '2', '3', 'l', 'p', '-', 'q'};
 
@@ -22,14 +22,14 @@ public class PasswordValidatorLengthTest {
     }
 
     @ParameterizedTest
-    @MethodSource("passwordsProviderWhenFalse")
-    public void parameterizedTest_whenPasswordLongEnoughFalse(boolean expected,
+    @MethodSource("shortPasswordsProvider")
+    public void passwordIsLongEnough_withShortPassword_ReturnsFalse(boolean expected,
                                                               char[] inputPassword) {
         boolean actual = PasswordValidator.isPasswordLongEnough(inputPassword);
         Assertions.assertFalse(actual);
     }
 
-    private static Stream<Arguments> passwordsProviderWhenFalse() {
+    private static Stream<Arguments> shortPasswordsProvider() {
         return Stream.of(
                 Arguments.of(false, new char[]{'o', '2', '3'}),
                 Arguments.of(false, new char[]{}),
@@ -39,15 +39,15 @@ public class PasswordValidatorLengthTest {
     }
 
     @ParameterizedTest
-    @MethodSource("passwordsProviderWhenTrue")
-    public void parameterizedTest_whenPasswordLongEnoughTrue(boolean expected,
+    @MethodSource("longPasswordsProvider")
+    public void passwordIsLongEnough_withLongPassword_ReturnsTrue(boolean expected,
                                                              char[] inputPassword) {
         boolean actual = PasswordValidator.isPasswordLongEnough(inputPassword);
         Assertions.assertTrue(actual);
     }
 
 
-    private static Stream<Arguments> passwordsProviderWhenTrue() {
+    private static Stream<Arguments> longPasswordsProvider() {
         return Stream.of(
                 Arguments.of(true, new char[]{'o', '2', '3', '5', 'w', 'f', '+', 'o'}),
                 Arguments.of(true, new char[]{'z', '9', '0', '-', '*', 'e', 'r', '^', 'a'})
