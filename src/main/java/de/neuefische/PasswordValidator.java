@@ -2,7 +2,8 @@ package de.neuefische;
 
 import java.io.*;
 import java.util.Arrays;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class PasswordValidator {
@@ -48,6 +49,17 @@ public class PasswordValidator {
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading common passwords file", e);
+        }
+        return false;
+    }
+
+    public static boolean hasPasswordSpecialCharacters(char[] password) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z0-9 ]");
+        for (char symbol : password) {
+            Matcher matcher = pattern.matcher(Character.toString(symbol));
+            if (matcher.find()) {
+                return true;
+            }
         }
         return false;
     }
